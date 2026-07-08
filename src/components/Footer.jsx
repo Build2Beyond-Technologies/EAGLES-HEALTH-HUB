@@ -100,6 +100,7 @@ export default function Footer({ setCurrentTab }) {
           justifyContent: 'between', 
           alignItems: 'center', 
           fontSize: '0.8rem' 
+        }}>
           <p style={{ flexGrow: 1 }}>
             &copy; {new Date().getFullYear()} Eagles Health Hub. All Rights Reserved. Designed for premium preventive healthcare. | Designed By{' '}
             <a 
