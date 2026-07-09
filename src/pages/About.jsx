@@ -21,21 +21,23 @@ export default function About({ setCurrentTab }) {
           <div>
             <div style={{ position: 'relative', width: '100%', maxWidth: '420px', margin: '0 auto' }}>
               <div style={{ position: 'absolute', top: '15px', left: '-15px', width: '100%', height: '100%', border: '4px solid #c9952a', borderRadius: '24px', zIndex: 1 }}></div>
-              <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', zIndex: 2, background: '#0c3e26', height: '480px' }}>
-                {/* Styled Vector representation of Dr. Ayeni Blessing since we don't have local image */}
-                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', padding: '40px', textAlign: 'center' }}>
-                  <svg width="120" height="120" viewBox="0 0 100 100" style={{ marginBottom: '24px' }}>
-                    <circle cx="50" cy="40" r="22" fill="#fff" />
-                    <path d="M15 85 C15 62, 28 55, 50 55 C72 55, 85 62, 85 85 Z" fill="#287a43" />
-                    {/* Stethoscope */}
-                    <path d="M35 48 C35 58, 65 58, 65 48" fill="none" stroke="#c9952a" strokeWidth="4" />
-                    <path d="M50 56 V72 C50 78, 40 78, 40 82" fill="none" stroke="#c9952a" strokeWidth="4" />
-                  </svg>
-                  <h3 style={{ color: '#fff', marginBottom: '8px' }}>Dr. Ayeni Blessing</h3>
-                  <p style={{ color: '#c9952a', fontWeight: '700', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>Medical Practitioner & Lifestyle Specialist</p>
-                  <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.8)', fontStyle: 'italic' }}>
-                    "Treating root causes of disease with empathy, education, and accountability."
-                  </p>
+              <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', zIndex: 2, background: '#0c3e26', height: '480px', boxShadow: 'var(--shadow-medium)' }}>
+                <img 
+                  src="/dr_ayani.jpeg" 
+                  alt="Dr. Ayeni Blessing" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(12, 62, 38, 0.95), rgba(12, 62, 38, 0.3), transparent)',
+                  padding: '24px',
+                  color: '#fff'
+                }}>
+                  <h3 style={{ color: '#fff', fontSize: '1.25rem', marginBottom: '4px' }}>Dr. Ayeni Blessing</h3>
+                  <p style={{ color: '#c9952a', fontSize: '0.82rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Medical Practitioner & Lifestyle Specialist</p>
                 </div>
               </div>
             </div>
@@ -67,6 +69,39 @@ export default function About({ setCurrentTab }) {
             <button onClick={() => setCurrentTab('book-consultation')} className="btn btn-primary">
               Book a Consultation with Dr. Ayeni
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Introduction Section */}
+      <section style={{ padding: '80px 0', background: '#fff', borderTop: '1px solid #e1e9df' }}>
+        <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+          <span className="section-tag">Introductory Video</span>
+          <h2 className="section-title">A Message From Dr. Ayeni Blessing</h2>
+          <p className="section-sub" style={{ marginBottom: '40px' }}>
+            Watch this brief presentation to understand how clinical Lifestyle Medicine differs from conventional medicine, and how you can start your transformation today.
+          </p>
+
+          <div style={{ 
+            position: 'relative', 
+            borderRadius: '24px', 
+            overflow: 'hidden', 
+            boxShadow: 'var(--shadow-heavy)',
+            background: '#0c3e26',
+            aspectRatio: '16/9',
+            border: '1px solid #e1e9df'
+          }}>
+            <video 
+              controls 
+              poster="/dr_ayani.jpeg" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            >
+              <source 
+                src="https://assets.mixkit.co/videos/preview/mixkit-female-doctor-talking-to-camera-in-clinic-40899-large.mp4" 
+                type="video/mp4" 
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>

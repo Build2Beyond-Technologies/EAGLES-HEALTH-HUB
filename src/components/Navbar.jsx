@@ -31,24 +31,17 @@ export default function Navbar({ currentTab, setCurrentTab }) {
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleNavClick('home')}>
-          {/* Custom vector representation of Eagles Health Hub Logo: Green Eagle & Medical Cross Leaf */}
-          <svg width="48" height="48" viewBox="0 0 100 100" style={{ marginRight: '10px' }}>
-            <circle cx="50" cy="50" r="45" fill="#f4fcf7" stroke="#287a43" strokeWidth="2" />
-            {/* Eagle Head Wings Shape */}
-            <path d="M25 45 C35 25, 60 20, 75 35 C80 40, 82 48, 75 52 C70 55, 65 52, 60 48" fill="none" stroke="#0c3e26" strokeWidth="6" strokeLinecap="round" />
-            <path d="M22 55 C35 48, 50 48, 65 58 C72 64, 78 72, 72 78 C65 85, 55 80, 48 70" fill="none" stroke="#287a43" strokeWidth="5" strokeLinecap="round" />
-            {/* Health Leaf Cross */}
-            <path d="M48 38 C53 38, 55 45, 55 50 C55 58, 48 65, 48 65 C48 65, 41 58, 41 50 C41 45, 43 38, 48 38 Z" fill="#287a43" opacity="0.8" />
-            <path d="M48 44 V56 M42 50 H54" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
-            {/* Eye of the Eagle */}
-            <circle cx="68" cy="38" r="2.5" fill="#c9952a" />
-          </svg>
-          <div className="logo-text">
-            Eagles Health Hub
-            <span>Lifestyle Medicine & Preventive Care</span>
-          </div>
-        </div>
+        <a 
+          href="#" 
+          onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} 
+          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+        >
+          <img 
+            src="/logo.png" 
+            alt="Eagles Health Hub Logo" 
+            style={{ height: '64px', width: 'auto', objectFit: 'contain', maxWidth: '250px' }} 
+          />
+        </a>
 
         <ul className={`nav-menu ${mobileOpen ? 'open' : ''}`}>
           {menuItems.map((item) => {
