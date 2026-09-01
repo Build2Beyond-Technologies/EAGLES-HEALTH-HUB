@@ -64,18 +64,23 @@ export default function Home({ setCurrentTab }) {
             <div className="hero-image-container">
               <div className="hero-img-backdrop"></div>
               <div className="hero-img-frame animate-float">
-                {/* SVG doctor representation as a visual background asset */}
-                <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #0c3e26 0%, #175438 100%)', color: '#fff', padding: '40px', textAlign: 'center' }}>
-                  <svg width="150" height="150" viewBox="0 0 100 100" style={{ marginBottom: '20px' }}>
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#c9952a" strokeWidth="2" strokeDasharray="6 3" />
-                    {/* Nested Clinical Cross Circle */}
-                    <circle cx="50" cy="50" r="30" fill="#287a43" />
-                    <path d="M50 38 V62 M38 50 H62" stroke="#fff" strokeWidth="8" strokeLinecap="round" />
-                    {/* Eagle Silhouette Wing */}
-                    <path d="M25 35 C40 20, 60 20, 75 35 C78 38, 70 42, 60 38 C55 35, 45 35, 30 42 Z" fill="#c9952a" />
-                  </svg>
-                  <h3 style={{ color: '#fff', fontSize: '1.5rem', marginBottom: '8px' }}>Eagles Health Hub</h3>
-                  <p style={{ color: '#c9952a', fontWeight: '700', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Trusted Experts. Better Health. Stronger You.</p>
+                <img 
+                  src="/dr_ayani.jpeg" 
+                  alt="Dr. Ayeni Blessing O." 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                />
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(12, 62, 38, 0.95), rgba(12, 62, 38, 0.3), transparent)',
+                  padding: '24px 20px',
+                  color: '#fff',
+                  textAlign: 'center'
+                }}>
+                  <h3 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: '2px' }}>Dr. Ayeni Blessing O.</h3>
+                  <p style={{ color: '#c9952a', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.04em' }}>MBChB, MPH, MWACP</p>
                 </div>
               </div>
             </div>
@@ -110,7 +115,7 @@ export default function Home({ setCurrentTab }) {
             <span className="section-tag">Clinical Mission</span>
             <h2 className="section-title">Small Healthy Choices. Lasting Results.</h2>
             <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '20px' }}>
-              Welcome to **Eagles Health Hub**. Directed by Dr. Ayeni Blessing, we focus on identifying the chemical and biological root causes of chronic illness. Rather than prescribing lifelong drug interventions to suppress symptoms, we partner with you to rebuild your cellular health.
+              Welcome to <strong>Eagles Health Hub</strong>. Directed by Dr. Ayeni Blessing, we focus on identifying the chemical and biological root causes of chronic illness. Rather than prescribing lifelong drug interventions to suppress symptoms, we partner with you to rebuild your cellular health.
             </p>
             <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '30px' }}>
               We integrate core medicine with target interventions in nutrition, physical movement, stress release, and sleep hygiene.

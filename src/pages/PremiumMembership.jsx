@@ -287,7 +287,7 @@ export default function PremiumMembership() {
             </button>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '6px', color: '#0c3e26' }}>Premium Subscription</h3>
             <p style={{ color: '#4d5f57', fontSize: '0.9rem', marginBottom: '24px' }}>
-              You are subscribing to the **{selectedPlan?.name}** for **₦{selectedPlan?.price.toLocaleString()}**.
+              You are subscribing to the <strong>{selectedPlan?.name}</strong> for <strong>₦{selectedPlan?.price.toLocaleString()}</strong>.
             </p>
 
             <form onSubmit={handlePaystackPayment}>

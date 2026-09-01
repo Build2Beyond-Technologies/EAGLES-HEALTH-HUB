@@ -8,9 +8,9 @@ export default function About({ setCurrentTab }) {
       <div style={{ background: 'linear-gradient(135deg, #051f12 0%, #0c3e26 100%)', color: '#fff', padding: '80px 0', textAlign: 'center' }}>
         <div className="container">
           <span className="section-tag" style={{ color: '#c9952a' }}>Meet the Founder</span>
-          <h1 style={{ color: '#fff', fontSize: '3rem', marginBottom: '20px' }}>Dr. Ayeni Blessing</h1>
-          <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.85)', maxWidth: '800px', margin: '0 auto' }}>
-            Empowering individuals to take control of their health through clinical Lifestyle Medicine and sustainable transformation.
+          <h1 style={{ color: '#fff', fontSize: '3rem', marginBottom: '10px' }}>Dr. Ayeni Blessing O.</h1>
+          <p style={{ fontSize: '1.25rem', color: '#c9952a', fontWeight: '700', letterSpacing: '0.04em' }}>
+            (MBChB, MPH, MWACP)
           </p>
         </div>
       </div>
@@ -20,25 +20,12 @@ export default function About({ setCurrentTab }) {
         <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '50px', alignItems: 'center' }}>
           <div>
             <div style={{ position: 'relative', width: '100%', maxWidth: '420px', margin: '0 auto' }}>
-              <div style={{ position: 'absolute', top: '15px', left: '-15px', width: '100%', height: '100%', border: '4px solid #c9952a', borderRadius: '24px', zIndex: 1 }}></div>
-              <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', zIndex: 2, background: '#0c3e26', height: '480px', boxShadow: 'var(--shadow-medium)' }}>
+              <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-heavy)', border: '1px solid #e1e9df', background: '#0c3e26' }}>
                 <img 
                   src="/dr_ayani.jpeg" 
-                  alt="Dr. Ayeni Blessing" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  alt="Dr. Ayeni Blessing O. (MBChB, MPH, MWACP)" 
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} 
                 />
-                <div style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  background: 'linear-gradient(to top, rgba(12, 62, 38, 0.95), rgba(12, 62, 38, 0.3), transparent)',
-                  padding: '24px',
-                  color: '#fff'
-                }}>
-                  <h3 style={{ color: '#fff', fontSize: '1.25rem', marginBottom: '4px' }}>Dr. Ayeni Blessing</h3>
-                  <p style={{ color: '#c9952a', fontSize: '0.82rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Medical Practitioner & Lifestyle Specialist</p>
-                </div>
               </div>
             </div>
           </div>
@@ -47,10 +34,13 @@ export default function About({ setCurrentTab }) {
             <span className="section-tag">Professional Profile</span>
             <h2 className="section-title" style={{ fontSize: '2.2rem', marginBottom: '24px' }}>Who is Behind Eagles Health Hub?</h2>
             <p style={{ color: '#4d5f57', marginBottom: '18px', fontSize: '1.05rem', lineHeight: '1.7' }}>
-              <strong>Dr. Ayeni Blessing</strong> is a dedicated medical doctor and lifestyle medicine expert passionate about preventive healthcare. Her medical practice centers on partnering with patients to treat and reverse chronic conditions through evidence-based lifestyle changes, rather than merely suppressing symptoms with life-long medications.
+              <strong>Dr. Ayeni Blessing</strong> is a Family Physician, Public Health Professional, and Lifestyle Medicine Advocate with a passion for helping individuals and families achieve optimal health through preventive, evidence-based care.
+            </p>
+            <p style={{ color: '#4d5f57', marginBottom: '18px', fontSize: '1.05rem', lineHeight: '1.7' }}>
+              She is committed to empowering people with practical health education, promoting healthy lifestyle choices, and providing personalized medical guidance that supports long-term wellness. Through clinical practice, community outreach, health education, and corporate wellness initiatives, Dr. Ayeni strives to make quality healthcare accessible and understandable for everyone.
             </p>
             <p style={{ color: '#4d5f57', marginBottom: '24px', fontSize: '1.05rem', lineHeight: '1.7' }}>
-              Having witnessed thousands of individuals struggle with preventable chronic conditions like Hypertension, Type 2 Diabetes, Obesity, and Cardiovascular diseases, she founded **Eagles Health Hub** as a structured platform to bridge clinical care with actionable lifestyle transformation.
+              As the Founder and Director of Eagles Health Hub, her mission is to inspire healthier communities by equipping people with the knowledge and tools they need to prevent disease, manage chronic conditions, and live healthier, more fulfilling lives.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', margin: '30px 0' }}>

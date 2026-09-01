@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCalendarCheck, FaHeartbeat, FaClock, FaClipboardList, FaVideo, FaQuestionCircle } from 'react-icons/fa';
 
-export default function Programs() {
+export default function Programs({ setCurrentTab }) {
   const tracks = [
     {
       icon: <FaClipboardList />,
@@ -101,11 +101,15 @@ export default function Programs() {
           <FaCalendarCheck style={{ fontSize: '2.5rem', color: '#c9952a', marginBottom: '20px' }} />
           <h2 style={{ fontSize: '1.8rem', color: '#0c3e26', marginBottom: '16px' }}>Ready to Get Started?</h2>
           <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '30px' }}>
-            Access to our 14-day transformational challenges and disease support tracks is included in our **Premium Membership** plans. You can also book a private consultation for a highly personalized plan.
+            Access to our 14-day transformational challenges and disease support tracks is included in our <strong>Premium Membership</strong> plans. You can also book a private consultation for a highly personalized plan.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-            <a href="#premium-membership" className="btn btn-secondary" style={{ textDecoration: 'none' }}>Join Premium Hub</a>
-            <a href="#book-consultation" className="btn btn-outline" style={{ textDecoration: 'none' }}>Book Consultation</a>
+            <button onClick={() => setCurrentTab && setCurrentTab('premium-membership')} className="btn btn-secondary">
+              Join Premium Hub
+            </button>
+            <button onClick={() => setCurrentTab && setCurrentTab('book-consultation')} className="btn btn-outline">
+              Book Consultation
+            </button>
           </div>
         </div>
       </section>

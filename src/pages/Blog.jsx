@@ -58,15 +58,47 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
+  const renderFormattedContent = (content) => {
+    if (!content) return null;
+    const lines = content.split('\n');
+    return lines.map((line, idx) => {
+      if (line.startsWith('### ')) {
+        return <h4 key={idx} style={{ fontSize: '1.25rem', color: '#0c3e26', margin: '20px 0 10px', fontWeight: '700' }}>{line.replace('### ', '')}</h4>;
+      }
+      if (line.startsWith('## ')) {
+        return <h3 key={idx} style={{ fontSize: '1.4rem', color: '#0c3e26', margin: '24px 0 12px', fontWeight: '700' }}>{line.replace('## ', '')}</h3>;
+      }
+      if (line.startsWith('# ')) {
+        return <h2 key={idx} style={{ fontSize: '1.6rem', color: '#0c3e26', margin: '28px 0 14px', fontWeight: '700' }}>{line.replace('# ', '')}</h2>;
+      }
+      const parts = line.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+      const formattedLine = parts.map((part, pIdx) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={pIdx} style={{ color: '#0c3e26' }}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('*') && part.endsWith('*')) {
+          return <em key={pIdx}>{part.slice(1, -1)}</em>;
+        }
+        return part;
+      });
+
+      return (
+        <p key={idx} style={{ marginBottom: line.trim() ? '14px' : '6px', minHeight: line.trim() ? 'auto' : '10px' }}>
+          {formattedLine}
+        </p>
+      );
+    });
+  };
+
   return (
     <div style={{ paddingTop: '90px' }} className="animate-fade-in-up">
-      {/* Header */}
+      {/* Header Banner */}
       <div style={{ background: 'linear-gradient(135deg, #051f12 0%, #0c3e26 100%)', color: '#fff', padding: '80px 0', textAlign: 'center' }}>
         <div className="container">
-          <span className="section-tag" style={{ color: '#c9952a' }}>Health Resources</span>
-          <h1 style={{ color: '#fff', fontSize: '3rem', marginBottom: '20px' }}>Health Education Hub</h1>
+          <span className="section-tag" style={{ color: '#c9952a' }}>Educational Hub</span>
+          <h1 style={{ color: '#fff', fontSize: '3rem', marginBottom: '20px' }}>Health Insights & Articles</h1>
           <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.85)', maxWidth: '800px', margin: '0 auto' }}>
-            Evidence-based medical resources, health tips, and lifestyle medicine tutorials curated by Dr. Ayeni Blessing.
+            Evidence-based medical education on reversing lifestyle diseases, managing metabolic risk factors, and building sustainable health habits.
           </p>
         </div>
       </div>
@@ -74,7 +106,7 @@ export default function Blog() {
       <section style={{ padding: '80px 0', background: '#fcfff0' }}>
         <div className="container">
           
-          {/* Filters Area */}
+          {/* Controls Bar: Search & Category Filter */}
           <div style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
@@ -83,48 +115,45 @@ export default function Blog() {
             gap: '20px', 
             marginBottom: '40px',
             background: '#fff',
-            padding: '20px 30px',
+            padding: '20px 24px',
             borderRadius: '16px',
             border: '1px solid #e1e9df'
           }}>
-            {/* Category selection */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#f8faf7', padding: '10px 18px', borderRadius: '50px', border: '1px solid #e1e9df', flexGrow: 1, maxWidth: '400px' }}>
+              <FaSearch style={{ color: '#4d5f57' }} />
+              <input 
+                type="text" 
+                placeholder="Search topics, hypertension, nutrition..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '0.9rem' }}
+              />
+            </div>
+
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-              {categories.map(cat => (
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   style={{
-                    padding: '8px 16px',
+                    padding: '8px 18px',
                     borderRadius: '50px',
-                    border: '1.5px solid',
-                    borderColor: selectedCategory === cat ? '#287a43' : '#e1e9df',
-                    background: selectedCategory === cat ? '#287a43' : 'transparent',
-                    color: selectedCategory === cat ? '#fff' : '#4d5f57',
+                    border: '1px solid #e1e9df',
                     fontSize: '0.85rem',
-                    fontWeight: '700',
+                    fontWeight: '600',
                     cursor: 'pointer',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    background: selectedCategory === cat ? '#0c3e26' : '#fff',
+                    color: selectedCategory === cat ? '#fff' : '#4d5f57'
                   }}
                 >
                   {cat}
                 </button>
               ))}
             </div>
-
-            {/* Search Input */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fdfdfd', border: '1.5px solid #e1e9df', padding: '10px 16px', borderRadius: '50px', width: '100%', maxWidth: '300px' }}>
-              <FaSearch style={{ color: '#4d5f57', fontSize: '0.9rem' }} />
-              <input 
-                type="text" 
-                placeholder="Search articles..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '0.9rem', color: '#16221d' }}
-              />
-            </div>
           </div>
 
-          {/* Grid of articles */}
+          {/* Articles Grid */}
           {filteredPosts.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '60px 0', background: '#fff', borderRadius: '16px', border: '1px solid #e1e9df' }}>
               <p style={{ color: '#4d5f57', fontSize: '1.1rem' }}>No articles match your search criteria. Check back later!</p>
@@ -217,7 +246,7 @@ export default function Blog() {
             <h2 style={{ fontSize: '2rem', color: '#0c3e26', marginBottom: '16px', lineHeight: '1.3' }}>{selectedPost.title}</h2>
             
             <div style={{ display: 'flex', gap: '20px', color: '#4d5f57', fontSize: '0.8rem', marginBottom: '30px', borderBottom: '1px solid #e1e9df', paddingBottom: '16px' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FaUser /> {selectedPost.author || 'Dr. Ayeni Blessing'}</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FaUser /> {selectedPost.author || 'Dr. Ayeni Blessing O.'}</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FaCalendarAlt /> {selectedPost.date || 'July 2026'}</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><FaClock /> {selectedPost.readTime || '5 min read'}</span>
             </div>
@@ -225,10 +254,9 @@ export default function Blog() {
             <div style={{ 
               fontSize: '1.05rem', 
               lineHeight: '1.8', 
-              color: '#16221d', 
-              whiteSpace: 'pre-line'
+              color: '#16221d'
             }}>
-              {selectedPost.content}
+              {renderFormattedContent(selectedPost.content)}
             </div>
 
             <div style={{ marginTop: '40px', borderTop: '1px solid #e1e9df', paddingTop: '24px', textAlign: 'center' }}>

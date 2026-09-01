@@ -2,9 +2,9 @@ import React from 'react';
 import { FaWhatsapp, FaInfoCircle, FaCheckCircle, FaBullhorn, FaBookOpen } from 'react-icons/fa';
 
 export default function FreeCommunity({ setCurrentTab }) {
-  // Target Phone: 07055893239
-  const whatsappCommunityLink = "https://wa.me/2347055893239?text=Hello%20Dr.%20Ayeni%20Blessing,%20I%20would%20like%20to%20join%20the%20FREE%20Eagles%20Health%20Community.";
-  const whatsappChannelLink = "https://wa.me/2347055893239?text=Hello%20Dr.%20Ayeni%20Blessing,%20please%20send%20me%20the%20link%20to%20follow%20the%20Eagles%20Health%20WhatsApp%20Channel.";
+  // Direct WhatsApp Group & Channel Links
+  const whatsappCommunityLink = "https://chat.whatsapp.com/Dg8OJBPEF1s04XOYQfchLD?s=cl&p=a&ilr=1&amv=3";
+  const whatsappChannelLink = "https://whatsapp.com/channel/0029VbC5cwzBFLgZxnNXIj1L";
 
   return (
     <div style={{ paddingTop: '90px' }} className="animate-fade-in-up">
@@ -26,7 +26,7 @@ export default function FreeCommunity({ setCurrentTab }) {
             <span className="section-tag">🌿 Welcome to the Eagles Health Community</span>
             <h2 className="section-title">Join a Supportive Health Journey</h2>
             <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '18px' }}>
-              The **Eagles Health Community** is a completely **FREE** platform dedicated to promoting healthy living through evidence-based health education, lifestyle awareness, and preventive care.
+              The <strong>Eagles Health Community</strong> is a completely <strong>FREE</strong> platform dedicated to promoting healthy living through evidence-based health education, lifestyle awareness, and preventive care.
             </p>
             <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '24px' }}>
               We believe that the first step to reversing chronic illness is knowledge. In this community, we break down complex clinical ideas into simple, daily actions you can take to protect your family's health.
@@ -102,7 +102,7 @@ export default function FreeCommunity({ setCurrentTab }) {
           <FaInfoCircle style={{ fontSize: '2.5rem', color: '#c9952a', marginBottom: '20px' }} />
           <h2 style={{ fontSize: '1.8rem', color: '#0c3e26', marginBottom: '16px' }}>Need a Guided Transformation Pathway?</h2>
           <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '30px' }}>
-            The **Eagles Health Community** will always remain **FREE** for general health tips and public updates. However, for individuals who desire personalized clinical guidance, strict accountability, support groups, and structured lifestyle transformational tracks, we offer the **Premium Membership**.
+            The <strong>Eagles Health Community</strong> will always remain <strong>FREE</strong> for general health tips and public updates. However, for individuals who desire personalized clinical guidance, strict accountability, support groups, and structured lifestyle transformational tracks, we offer the <strong>Premium Membership</strong>.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
             <button onClick={() => setCurrentTab('premium-membership')} className="btn btn-secondary">

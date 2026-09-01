@@ -1152,6 +1152,53 @@ section {
 }
 
 /* Responsive Overrides */
+@media (max-width: 1250px) and (min-width: 1150px) {
+  .nav-menu {
+    gap: 12px;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  .logo-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  .mobile-toggle {
+    display: block;
+  }
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    padding: 24px 20px;
+    gap: 16px;
+    box-shadow: var(--shadow-medium);
+    border-bottom: 1px solid var(--border-light);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    pointer-events: none;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
+
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1171,7 +1218,7 @@ section {
     justify-content: center;
   }
   .hero-image-container {
-    max-width: 480px;
+    max-width: 420px;
     margin: 0 auto;
   }
   .booking-container {
@@ -1197,47 +1244,110 @@ section {
   }
 }
 
-@media (max-width: 1250px) and (min-width: 1150px) {
-  .nav-menu {
-    gap: 12px;
+@media (max-width: 768px) {
+  .navbar {
+    height: 80px;
   }
-  .nav-link {
-    font-size: 0.8rem;
+  .navbar-container img {
+    height: 48px !important;
+    max-width: 180px !important;
   }
-  .logo-text {
+  .hero {
+    padding: 100px 0 50px;
+    min-height: auto;
+  }
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+  .hero-content h1 {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    margin-bottom: 16px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .hero-subtext {
     font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    padding: 0 4px;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+    text-align: center;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    padding-top: 24px;
+  }
+  .hero-stat-item {
+    text-align: center;
+  }
+  .hero-stat-item h3 {
+    font-size: 1.5rem;
+  }
+  .hero-stat-item p {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .card {
+    padding: 28px 20px;
+  }
+  .section-title {
+    font-size: 1.85rem;
   }
 }
 
-@media (max-width: 1150px) {
-  .mobile-toggle {
-    display: block;
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
   }
-  .nav-menu {
-    position: fixed;
-    top: 90px;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    flex-direction: column;
-    padding: 30px 24px;
-    gap: 20px;
-    box-shadow: var(--shadow-medium);
-    border-bottom: 1px solid var(--border-light);
-    transform: translateY(-120%);
-    opacity: 0;
-    transition: transform var(--transition-normal), opacity var(--transition-normal);
-    pointer-events: none;
+  .hero {
+    padding: 95px 0 40px;
   }
-  .nav-menu.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
   }
-  .nav-link {
-    width: 100%;
-    text-align: center;
+  .hero-stat-item h3 {
+    font-size: 1.25rem;
+  }
+  .hero-stat-item p {
+    font-size: 0.65rem;
+  }
+  .wa-float-btn {
+    left: 16px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  .back-to-top-btn {
+    right: 16px;
+    bottom: 20px;
+    width: 42px;
+    height: 42px;
     font-size: 1rem;
-    padding: 12px 0;
   }
 }

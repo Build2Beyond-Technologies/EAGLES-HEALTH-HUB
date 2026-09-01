@@ -103,12 +103,12 @@ export default function LifestyleMedicine() {
               Conventional medical approaches often focus on prescribing lifelong medications to suppress markers of chronic illnesses. While medications are critical and appropriate in many clinical stages, they rarely fix the root drivers of the illness.
             </p>
             <p style={{ color: '#4d5f57', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '20px' }}>
-              **Lifestyle Medicine** focuses on the root behaviors that trigger metabolic, hormonal, and vascular dysfunction. By adjusting what we eat, how we move, how we sleep, and how we cope with stress, we can address the physiological root causes of disease.
+              <strong>Lifestyle Medicine</strong> focuses on the root behaviors that trigger metabolic, hormonal, and vascular dysfunction. By adjusting what we eat, how we move, how we sleep, and how we cope with stress, we can address the physiological root causes of disease.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fcfff0', padding: '16px 20px', borderRadius: '12px', borderLeft: '4px solid #287a43' }}>
               <FaInfoCircle style={{ color: '#287a43', fontSize: '1.5rem', flexShrink: 0 }} />
               <p style={{ fontSize: '0.88rem', color: '#0c3e26', fontWeight: '500' }}>
-                Lifestyle medicine works *alongside* conventional medical care, offering a structured, drug-free pathway to reduce medication dependency where clinically appropriate.
+                Lifestyle medicine works <em>alongside</em> conventional medical care, offering a structured, drug-free pathway to reduce medication dependency where clinically appropriate.
               </p>
             </div>
           </div>
