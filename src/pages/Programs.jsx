@@ -27,9 +27,9 @@ export default function Programs({ setCurrentTab }) {
     {
       icon: <FaClock />,
       title: 'Healthy Living Series',
-      subtitle: 'Weekly Interactive Lessons',
-      desc: 'Join Dr. Ayeni Blessing every Monday from 7:00 PM to 7:30 PM. These meetings break down complex clinical theories into digestible, actionable rules you can execute in your home immediately.',
-      delivery: 'Weekly live Zoom/Meet calls, direct questions, and recorded archives.'
+      subtitle: 'Twice-Monthly Interactive Lessons',
+      desc: 'Join Dr. Ayeni Blessing twice monthly from 7:00 PM to 7:30 PM. These meetings break down complex clinical theories into digestible, actionable rules you can execute in your home immediately.',
+      delivery: 'Twice-monthly live Zoom/Meet calls, direct questions, and recorded archives.'
     },
     {
       icon: <FaVideo />,
@@ -43,7 +43,7 @@ export default function Programs({ setCurrentTab }) {
       title: 'Live Q&A Sessions',
       subtitle: 'Direct Physician Guidance',
       desc: 'Ask your clinical wellness questions directly. Get verified, evidence-based answers regarding diets, health indicators, supplement choices, and lifestyle adjustments from Dr. Ayeni Blessing.',
-      delivery: 'Bi-weekly open group consultations.'
+      delivery: 'Twice-monthly open group consultations.'
     }
   ];
 

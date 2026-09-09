@@ -23,7 +23,7 @@ export default function Footer({ setCurrentTab }) {
             </p>
             <div style={{ display: 'flex', gap: '12px' }}>
               <a href="https://wa.me/2347055893239" target="_blank" rel="noreferrer" style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', alignItems: 'center', transition: 'all 0.3s' }}><FaWhatsapp /></a>
-              <a href="mailto:info@eaglesmedicalservices.com" style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', alignItems: 'center', transition: 'all 0.3s' }}><FaEnvelope /></a>
+              <a href="mailto:eaglemedicalservices6@gmail.com" style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', alignItems: 'center', transition: 'all 0.3s' }}><FaEnvelope /></a>
               <a href="https://instagram.com" target="_blank" rel="noreferrer" style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', alignItems: 'center', transition: 'all 0.3s' }}><FaInstagram /></a>
               <a href="https://facebook.com" target="_blank" rel="noreferrer" style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', alignItems: 'center', transition: 'all 0.3s' }}><FaFacebook /></a>
             </div>
@@ -71,7 +71,7 @@ export default function Footer({ setCurrentTab }) {
               <strong>WhatsApp:</strong> +234 705 589 3239
             </p>
             <p style={{ fontSize: '0.9rem', lineHeight: '1.7', marginBottom: '10px' }}>
-              <strong>Email:</strong> info@eaglesmedicalservices.com
+              <strong>Email:</strong> eaglemedicalservices6@gmail.com
             </p>
             <p style={{ fontSize: '0.9rem', lineHeight: '1.7' }}>
               <strong>Mailing Address:</strong> Lagos, Nigeria

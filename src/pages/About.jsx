@@ -63,7 +63,8 @@ export default function About({ setCurrentTab }) {
         </div>
       </section>
 
-      {/* Video Introduction Section */}
+      {/* Video Introduction Section (Temporarily commented out until official video is ready) */}
+      {/* 
       <section style={{ padding: '80px 0', background: '#fff', borderTop: '1px solid #e1e9df' }}>
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <span className="section-tag">Introductory Video</span>
@@ -95,6 +96,7 @@ export default function About({ setCurrentTab }) {
           </div>
         </div>
       </section>
+      */}
 
       {/* Vision & Mission */}
       <section style={{ padding: '80px 0', background: '#fcfff0', borderTop: '1px solid #e1e9df', borderBottom: '1px solid #e1e9df' }}>

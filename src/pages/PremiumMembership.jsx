@@ -10,45 +10,32 @@ export default function PremiumMembership() {
 
   const plans = [
     {
-      name: 'Monthly Plan',
-      price: 5000,
-      period: 'month',
-      savings: null,
-      popular: false,
-      benefits: [
-        'Weekly Healthy Living Series',
-        'Monthly Lifestyle Medicine Webinars',
-        'Live Q&A Sessions',
-        'Medication Adherence & Accountability Support',
-        'Downloadable Educational Resources'
-      ]
-    },
-    {
       name: 'Quarterly Plan',
       price: 12500,
-      period: 'quarter',
-      savings: 'Save ₦2,500',
+      period: '3 months',
+      savings: null,
       popular: true,
       benefits: [
-        'All Monthly Benefits',
+        'Twice-Monthly Healthy Living Series & Webinars',
+        'Live Q&A Sessions with Dr. Ayeni',
         '14-Day Lifestyle Transformation Challenge',
-        'Hypertension Support Track access',
-        'Diabetes Support Track access',
-        'Priority webinar seating'
+        'Hypertension & Diabetes Support Tracks',
+        'Medication Adherence & Accountability Support',
+        'Downloadable Educational Resources'
       ]
     },
     {
       name: 'Annual Plan',
       price: 48000,
       period: 'year',
-      savings: 'Save ₦12,000',
+      savings: 'Save ₦2,000 vs Quarterly',
       popular: false,
       benefits: [
-        'All Quarterly Benefits',
+        'All Quarterly Plan Benefits & Tracks',
         'Direct 1-on-1 monthly follow-up check',
         'Extended family resource sharing',
         'Accountability partner matching',
-        'Complete digital resources archive'
+        'Complete digital resources archive & priority access'
       ]
     }
   ];
@@ -167,7 +154,7 @@ export default function PremiumMembership() {
               {[
                 { title: '14-Day Lifestyle Transformation Challenge', desc: 'A structured daily reset focusing on resetting hydration, digestion, blood sugar, and stress responses.' },
                 { title: 'Hypertension & Diabetes Support Tracks', desc: 'Targeted care guides with active accountability checklists to support blood pressure and blood glucose compliance.' },
-                { title: 'Weekly Healthy Living Series & Live Webinars', desc: 'Exclusive weekly meetings (Mondays 7:00PM - 7:30PM) and monthly workshops with Dr. Ayeni.' },
+                { title: 'Twice-Monthly Healthy Living Series & Live Webinars', desc: 'Exclusive interactive sessions (7:00PM - 7:30PM) and monthly workshops with Dr. Ayeni.' },
                 { title: 'Medication Adherence Support', desc: 'Structured accountability protocols to build compliance and guide safe tapering under medical supervision.' }
               ].map((b, idx) => (
                 <li key={idx} style={{ display: 'flex', gap: '15px', alignItems: 'flex-start', marginBottom: '20px' }}>
@@ -182,11 +169,11 @@ export default function PremiumMembership() {
           </div>
 
           <div style={{ background: '#fff', border: '1px solid #e1e9df', borderRadius: '24px', padding: '40px', boxShadow: 'var(--shadow-medium)' }}>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '8px', color: '#0c3e26', textAlign: 'center' }}>Weekly Live Sessions</h3>
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '8px', color: '#0c3e26', textAlign: 'center' }}>Twice-Monthly Live Sessions</h3>
             <p style={{ color: '#4d5f57', fontSize: '0.9rem', textAlign: 'center', marginBottom: '24px' }}>Exclusively accessible to Premium Members</p>
             
             <div style={{ background: '#fcfff0', padding: '24px', borderRadius: '16px', border: '1px solid #e1e9df', marginBottom: '20px', textAlign: 'center' }}>
-              <div style={{ background: '#c9952a', color: '#fff', display: 'inline-block', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>EVERY MONDAY</div>
+              <div style={{ background: '#c9952a', color: '#fff', display: 'inline-block', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>TWICE MONTHLY</div>
               <h4 style={{ fontSize: '1.2rem', marginBottom: '6px' }}>Healthy Living Series</h4>
               <p style={{ fontSize: '0.9rem', color: '#4d5f57', fontWeight: '500' }}>7:00 PM — 7:30 PM</p>
               <p style={{ fontSize: '0.82rem', color: '#4d5f57', marginTop: '12px' }}>

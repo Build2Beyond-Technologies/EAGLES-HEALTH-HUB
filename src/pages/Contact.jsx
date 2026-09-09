@@ -21,7 +21,7 @@ export default function Contact() {
     },
     {
       q: 'How does the Premium Membership differ from the Free Community?',
-      a: 'The Free Community is open to all for general health updates, articles, and wellness bulletins. The Premium Membership is a structured clinical program that unlocks the 14-Day Lifestyle Transformation Challenge, dedicated Hypertension and Diabetes tracks, weekly Zoom meetings (Mondays 7:00 PM - 7:30 PM), and personal accountability check-lists.'
+      a: 'The Free Community is open to all for general health updates, articles, and wellness bulletins. The Premium Membership is a structured clinical program that unlocks the 14-Day Lifestyle Transformation Challenge, dedicated Hypertension and Diabetes tracks, twice-monthly live Zoom sessions (7:00 PM - 7:30 PM), and personal accountability check-lists.'
     },
     {
       q: 'How do I book and pay for consultations?',
@@ -118,7 +118,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1rem', color: '#0c3e26' }}>Email Address</h4>
-                  <p style={{ fontSize: '0.9rem', color: '#4d5f57' }}>info@eaglesmedicalservices.com</p>
+                  <p style={{ fontSize: '0.9rem', color: '#4d5f57' }}>eaglemedicalservices6@gmail.com</p>
                 </div>
               </div>
 

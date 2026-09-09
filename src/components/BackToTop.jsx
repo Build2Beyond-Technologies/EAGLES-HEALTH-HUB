@@ -25,7 +25,7 @@ export default function BackToTop() {
   };
 
   return (
-    <button 
+    <button
       onClick={scrollToTop}
       className={`back-to-top-btn ${visible ? 'visible' : ''}`}
       aria-label="Back to top"

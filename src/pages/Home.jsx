@@ -47,12 +47,12 @@ export default function Home({ setCurrentTab }) {
 
               <div className="hero-stats">
                 <div className="hero-stat-item">
-                  <h3>₦10k</h3>
+                  <h3>1-on-1</h3>
                   <p>Consultation</p>
                 </div>
                 <div className="hero-stat-item">
-                  <h3>Mondays</h3>
-                  <p>Weekly Series</p>
+                  <h3>Twice-Monthly</h3>
+                  <p>Health Series</p>
                 </div>
                 <div className="hero-stat-item">
                   <h3>100%</h3>
@@ -66,22 +66,9 @@ export default function Home({ setCurrentTab }) {
               <div className="hero-img-frame animate-float">
                 <img 
                   src="/dr_ayani.jpeg" 
-                  alt="Dr. Ayeni Blessing O." 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  alt="Dr. Ayeni Blessing O. (MBChB, MPH, MWACP)" 
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} 
                 />
-                <div style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  background: 'linear-gradient(to top, rgba(12, 62, 38, 0.95), rgba(12, 62, 38, 0.3), transparent)',
-                  padding: '24px 20px',
-                  color: '#fff',
-                  textAlign: 'center'
-                }}>
-                  <h3 style={{ color: '#fff', fontSize: '1.2rem', marginBottom: '2px' }}>Dr. Ayeni Blessing O.</h3>
-                  <p style={{ color: '#c9952a', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.04em' }}>MBChB, MPH, MWACP</p>
-                </div>
               </div>
             </div>
           </div>
@@ -139,7 +126,7 @@ export default function Home({ setCurrentTab }) {
                 <span style={{ color: '#c9952a' }}>2.</span> Premium Membership Hub
               </h4>
               <p style={{ fontSize: '0.88rem', color: '#4d5f57' }}>
-                Structured 14-day challenges, targeted Hypertension and Diabetes tracks, weekly check-ins, and direct accountability channels.
+                Structured 14-day challenges, targeted Hypertension and Diabetes tracks, twice-monthly live sessions, and direct accountability channels.
               </p>
             </div>
             <div style={{ background: '#fcfff0', padding: '24px', borderRadius: '16px', border: '1px solid #e1e9df' }}>
@@ -161,7 +148,7 @@ export default function Home({ setCurrentTab }) {
             <span className="section-tag" style={{ color: '#c9952a' }}>Premium Programs</span>
             <h2 className="section-title" style={{ color: '#fff' }}>Eagles' Health Premium Hub</h2>
             <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '30px' }}>
-              Join a guided cohort to build healthy habits. Get custom meal designs, blood pressure tracking logs, glucose templates, and join weekly live Zooms.
+              Join a guided cohort to build healthy habits. Get custom meal designs, blood pressure tracking logs, glucose templates, and join twice-monthly live Zooms.
             </p>
             <div style={{ display: 'flex', gap: '15px' }}>
               <button onClick={() => handleAction('premium-membership')} className="btn btn-secondary">
@@ -176,7 +163,7 @@ export default function Home({ setCurrentTab }) {
           <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '24px', padding: '40px' }}>
             <h3 style={{ color: '#fff', fontSize: '1.3rem', marginBottom: '24px' }}>Premium Inclusions:</h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {['14-Day Lifestyle Transformation Challenge', 'Hypertension & Diabetes Support Tracks', 'Weekly Zoom Meetings (Mondays 7PM-7:30PM)', 'Medication adherence accountability'].map((inc, i) => (
+              {['14-Day Lifestyle Transformation Challenge', 'Hypertension & Diabetes Support Tracks', 'Twice-Monthly Live Zoom Sessions', 'Medication adherence accountability'].map((inc, i) => (
                 <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'center', fontSize: '0.95rem' }}>
                   <span style={{ color: '#c9952a', fontWeight: '800' }}>✓</span>
                   <span>{inc}</span>
