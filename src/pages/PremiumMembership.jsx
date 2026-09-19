@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCheckCircle, FaStar, FaChevronRight, FaCreditCard, FaUniversity, FaCopy, FaWhatsapp } from 'react-icons/fa';
 
 export default function PremiumMembership() {
@@ -10,6 +10,18 @@ export default function PremiumMembership() {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [transferSubmitted, setTransferSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Lock background body scroll when any modal is active
+  useEffect(() => {
+    if (isCheckoutOpen || paymentSuccess || transferSubmitted) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isCheckoutOpen, paymentSuccess, transferSubmitted]);
 
   const bankDetails = {
     bankName: 'Premium Trust Bank',
@@ -286,40 +298,27 @@ export default function PremiumMembership() {
 
       {/* Checkout Modal */}
       {isCheckoutOpen && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(5px)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px'
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: '24px',
-            padding: '36px',
-            maxWidth: '500px',
-            width: '100%',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            position: 'relative',
-            boxShadow: 'var(--shadow-heavy)'
-          }}>
+        <div 
+          className="modal-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsCheckoutOpen(false);
+          }}
+        >
+          <div className="modal-card">
             <button 
               onClick={() => setIsCheckoutOpen(false)}
               style={{
                 position: 'absolute',
-                top: '20px',
+                top: '18px',
                 right: '20px',
                 background: 'none',
                 border: 'none',
-                fontSize: '1.5rem',
+                fontSize: '1.6rem',
                 cursor: 'pointer',
-                color: '#4d5f57'
+                color: '#4d5f57',
+                lineHeight: 1
               }}
+              aria-label="Close"
             >
               &times;
             </button>
@@ -527,26 +526,13 @@ export default function PremiumMembership() {
 
       {/* Payment Success View (Paystack) */}
       {paymentSuccess && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(5px)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px'
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: '24px',
-            padding: '40px',
-            maxWidth: '480px',
-            width: '100%',
-            textAlign: 'center',
-            boxShadow: 'var(--shadow-heavy)'
-          }}>
+        <div 
+          className="modal-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setPaymentSuccess(false);
+          }}
+        >
+          <div className="modal-card" style={{ textAlign: 'center' }}>
             <div style={{
               width: '80px',
               height: '80px',
@@ -578,26 +564,13 @@ export default function PremiumMembership() {
 
       {/* Transfer Submitted Confirmation View */}
       {transferSubmitted && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(5px)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px'
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: '24px',
-            padding: '40px',
-            maxWidth: '480px',
-            width: '100%',
-            textAlign: 'center',
-            boxShadow: 'var(--shadow-heavy)'
-          }}>
+        <div 
+          className="modal-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setTransferSubmitted(false);
+          }}
+        >
+          <div className="modal-card" style={{ textAlign: 'center' }}>
             <div style={{
               width: '80px',
               height: '80px',

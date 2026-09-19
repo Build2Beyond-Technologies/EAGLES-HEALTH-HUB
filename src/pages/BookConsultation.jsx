@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCalendarAlt, FaClock, FaCheckCircle, FaLock, FaWhatsapp, FaCreditCard, FaUniversity, FaCopy } from 'react-icons/fa';
 
 export default function BookConsultation() {
@@ -18,6 +18,13 @@ export default function BookConsultation() {
   const [success, setSuccess] = useState(false);
   const [bookingRef, setBookingRef] = useState('');
   const [isTransferBooking, setIsTransferBooking] = useState(false);
+
+  // Auto scroll to confirmation card on success
+  useEffect(() => {
+    if (success) {
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+  }, [success]);
 
   // Fixed Price in Naira: ₦10,000
   const price = 10000;
