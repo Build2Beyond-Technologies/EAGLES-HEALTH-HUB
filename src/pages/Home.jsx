@@ -65,8 +65,8 @@ export default function Home({ setCurrentTab }) {
               <div className="hero-img-backdrop"></div>
               <div className="hero-img-frame animate-float">
                 <img 
-                  src="/dr_ayani.jpeg" 
-                  alt="Dr. Ayeni Blessing O. (MBChB, MPH, MWACP)" 
+                  src="/dr_ayeni_founder.png"
+                  alt="Dr. Ayeni Blessing O. — MBCh.B., MWACP, MPH — Founder, Eagles Health Hub."
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} 
                 />
               </div>
