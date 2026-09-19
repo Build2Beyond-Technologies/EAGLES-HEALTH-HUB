@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { FaCheckCircle, FaStar, FaChevronRight, FaCreditCard, FaUniversity, FaCopy, FaWhatsapp } from 'react-icons/fa';
 
 export default function PremiumMembership() {
@@ -296,8 +297,8 @@ export default function PremiumMembership() {
         </div>
       </section>
 
-      {/* Checkout Modal */}
-      {isCheckoutOpen && (
+      {/* Portal dialogs to the body so the page animation cannot offset fixed overlays. */}
+      {isCheckoutOpen && createPortal(
         <div 
           className="modal-overlay"
           onClick={(e) => {
@@ -521,11 +522,12 @@ export default function PremiumMembership() {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Payment Success View (Paystack) */}
-      {paymentSuccess && (
+      {paymentSuccess && createPortal(
         <div 
           className="modal-overlay"
           onClick={(e) => {
@@ -559,11 +561,12 @@ export default function PremiumMembership() {
               Continue Browsing
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Transfer Submitted Confirmation View */}
-      {transferSubmitted && (
+      {transferSubmitted && createPortal(
         <div 
           className="modal-overlay"
           onClick={(e) => {
@@ -597,7 +600,8 @@ export default function PremiumMembership() {
               Back to Premium Hub
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
