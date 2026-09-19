@@ -29,7 +29,7 @@ export default function Contact() {
     },
     {
       q: 'Can I pay via manual bank transfer?',
-      a: 'Yes! If you prefer manual bank transfers, please click the floating WhatsApp button to chat with our billing team. They will provide our corporate account details and manually register your slot or subscription.'
+      a: 'Yes! Both online Paystack and direct bank transfer options are built into checkout. You can transfer directly to: Bank: Premium Trust Bank | Account Name: Eagle Medical Services Ltd | Account No: 0010254981. After transfer, send your payment receipt to our WhatsApp (+234 705 589 3239) for immediate confirmation.'
     },
     {
       q: 'Are home monitoring medical devices included in the membership?',

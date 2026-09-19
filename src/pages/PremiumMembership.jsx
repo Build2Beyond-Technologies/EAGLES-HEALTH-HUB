@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
-import { FaCheckCircle, FaStar, FaChevronRight } from 'react-icons/fa';
+import { FaCheckCircle, FaStar, FaChevronRight, FaCreditCard, FaUniversity, FaCopy, FaWhatsapp } from 'react-icons/fa';
 
 export default function PremiumMembership() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [selectedPlan, setSelectedPlan] = useState(null); // { name, price, key }
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('paystack'); // 'paystack' | 'transfer'
+  const [copied, setCopied] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [transferSubmitted, setTransferSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const bankDetails = {
+    bankName: 'Premium Trust Bank',
+    accountName: 'Eagle Medical Services Ltd',
+    accountNumber: '0010254981'
+  };
+
+  const copyAccountNumber = () => {
+    navigator.clipboard.writeText(bankDetails.accountNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+  };
 
   const plans = [
     {
@@ -47,7 +62,9 @@ export default function PremiumMembership() {
   const openPaymentModal = (plan) => {
     setSelectedPlan(plan);
     setIsCheckoutOpen(true);
+    setPaymentMethod('paystack');
     setPaymentSuccess(false);
+    setTransferSubmitted(false);
   };
 
   const handlePaystackPayment = (e) => {
@@ -59,10 +76,10 @@ export default function PremiumMembership() {
 
     setLoading(true);
 
-    // Paystack Inline SDK Integration
+    // Paystack Inline SDK Integration with Live Key
     if (window.PaystackPop) {
       const handler = window.PaystackPop.setup({
-        key: 'pk_test_352a08bf24ddb16eb1dffafd367edc7b37e49f8e', // standard test key
+        key: 'pk_live_6b284015b868eadec2433556c44025b36201115c',
         email: formData.email,
         amount: selectedPlan.price * 100, // in kobo
         currency: 'NGN',
@@ -101,6 +118,7 @@ export default function PremiumMembership() {
             price: selectedPlan.price,
             date: new Date().toLocaleDateString(),
             reference: response.reference,
+            paymentMethod: 'Paystack',
             status: 'Paid'
           };
 
@@ -110,7 +128,7 @@ export default function PremiumMembership() {
           localStorage.setItem('ehh_subscriptions', JSON.stringify(currentSubs));
 
           // Prepare WhatsApp link for onboarding
-          const message = `Hello Dr. Ayeni Blessing,\n\nI have successfully subscribed to the Premium Membership (${selectedPlan.name}).\n\n*Payment Details:*\n- Name: ${formData.name}\n- Email: ${formData.email}\n- Phone: ${formData.phone}\n- Ref: ${response.reference}\n- Amount Paid: ₦${selectedPlan.price.toLocaleString()}\n\nPlease verify my payment and add me to the Premium onboarding channels.`;
+          const message = `Hello Dr. Ayeni Blessing,\n\nI have successfully subscribed to the Premium Membership (${selectedPlan.name}) via Paystack.\n\n*Payment Details:*\n- Name: ${formData.name}\n- Email: ${formData.email}\n- Phone: ${formData.phone}\n- Ref: ${response.reference}\n- Amount Paid: ₦${selectedPlan.price.toLocaleString()}\n\nPlease verify my payment and add me to the Premium onboarding channels.`;
           
           const whatsappUrl = `https://wa.me/2347055893239?text=${encodeURIComponent(message)}`;
           window.open(whatsappUrl, '_blank');
@@ -125,6 +143,37 @@ export default function PremiumMembership() {
       setLoading(false);
       alert('Paystack SDK failed to load. Please refresh the page and try again.');
     }
+  };
+
+  const handleTransferSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.phone) {
+      alert('Please provide your Name and WhatsApp phone number.');
+      return;
+    }
+
+    const subscription = {
+      id: 'TRANS-' + Math.floor(Math.random() * 1000000 + 1),
+      name: formData.name,
+      email: formData.email || 'N/A',
+      phone: formData.phone,
+      plan: selectedPlan.name,
+      price: selectedPlan.price,
+      date: new Date().toLocaleDateString(),
+      paymentMethod: 'Bank Transfer',
+      status: 'Pending Transfer Verification'
+    };
+
+    const currentSubs = JSON.parse(localStorage.getItem('ehh_subscriptions') || '[]');
+    currentSubs.unshift(subscription);
+    localStorage.setItem('ehh_subscriptions', JSON.stringify(currentSubs));
+
+    const message = `Hello Dr. Ayeni Blessing,\n\nI have made a direct bank transfer for the Premium Membership (${selectedPlan.name}).\n\n*My Details:*\n- Name: ${formData.name}\n- WhatsApp Phone: ${formData.phone}\n- Email: ${formData.email || 'N/A'}\n- Plan: ${selectedPlan.name}\n- Amount: ₦${selectedPlan.price.toLocaleString()}\n- Bank: Premium Trust Bank\n- Account: 0010254981 (Eagle Medical Services Ltd)\n\nI am sending my transfer receipt/evidence of payment now. Please verify and onboard me. Thank you!`;
+    const whatsappUrl = `https://wa.me/2347055893239?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    setIsCheckoutOpen(false);
+    setTransferSubmitted(true);
   };
 
   return (
@@ -235,7 +284,7 @@ export default function PremiumMembership() {
         </div>
       </section>
 
-      {/* Paystack Checkout Modal */}
+      {/* Checkout Modal */}
       {isCheckoutOpen && (
         <div style={{
           position: 'fixed',
@@ -251,9 +300,11 @@ export default function PremiumMembership() {
           <div style={{
             background: '#fff',
             borderRadius: '24px',
-            padding: '40px',
-            maxWidth: '480px',
+            padding: '36px',
+            maxWidth: '500px',
             width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
             position: 'relative',
             boxShadow: 'var(--shadow-heavy)'
           }}>
@@ -272,65 +323,209 @@ export default function PremiumMembership() {
             >
               &times;
             </button>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '6px', color: '#0c3e26' }}>Premium Subscription</h3>
-            <p style={{ color: '#4d5f57', fontSize: '0.9rem', marginBottom: '24px' }}>
-              You are subscribing to the <strong>{selectedPlan?.name}</strong> for <strong>₦{selectedPlan?.price.toLocaleString()}</strong>.
+            
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '4px', color: '#0c3e26' }}>Premium Subscription</h3>
+            <p style={{ color: '#4d5f57', fontSize: '0.9rem', marginBottom: '20px' }}>
+              Subscribing to <strong>{selectedPlan?.name}</strong> (<strong>₦{selectedPlan?.price.toLocaleString()}</strong>).
             </p>
 
-            <form onSubmit={handlePaystackPayment}>
-              <div className="form-group">
-                <label>Your Full Name</label>
-                <input 
-                  type="text" 
-                  name="name"
-                  className="form-control" 
-                  value={formData.name} 
-                  onChange={handleInputChange} 
-                  required 
-                  placeholder="e.g., John Doe"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Email Address</label>
-                <input 
-                  type="email" 
-                  name="email"
-                  className="form-control" 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
-                  required 
-                  placeholder="e.g., john@example.com"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>WhatsApp Phone Number</label>
-                <input 
-                  type="tel" 
-                  name="phone"
-                  className="form-control" 
-                  value={formData.phone} 
-                  onChange={handleInputChange} 
-                  required 
-                  placeholder="e.g., +234 803 123 4567"
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="btn btn-secondary" 
-                style={{ width: '100%', padding: '14px', marginTop: '10px' }}
-                disabled={loading}
+            {/* Payment Method Selector */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '8px',
+              background: '#f1f5f2',
+              padding: '6px',
+              borderRadius: '12px',
+              marginBottom: '22px'
+            }}>
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('paystack')}
+                style={{
+                  padding: '10px 8px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: paymentMethod === 'paystack' ? '#0c3e26' : 'transparent',
+                  color: paymentMethod === 'paystack' ? '#fff' : '#4d5f57',
+                  transition: 'all 0.2s ease'
+                }}
               >
-                {loading ? 'Opening Paystack...' : `Pay ₦${selectedPlan?.price.toLocaleString()} via Paystack`}
+                <FaCreditCard /> Pay with Paystack
               </button>
-            </form>
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('transfer')}
+                style={{
+                  padding: '10px 8px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  background: paymentMethod === 'transfer' ? '#0c3e26' : 'transparent',
+                  color: paymentMethod === 'transfer' ? '#fff' : '#4d5f57',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <FaUniversity /> Pay via Transfer
+              </button>
+            </div>
+
+            {paymentMethod === 'paystack' ? (
+              /* Paystack Online Checkout Form */
+              <form onSubmit={handlePaystackPayment}>
+                <div className="form-group">
+                  <label>Your Full Name</label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    className="form-control" 
+                    value={formData.name} 
+                    onChange={handleInputChange} 
+                    required 
+                    placeholder="e.g., John Doe"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Email Address</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    className="form-control" 
+                    value={formData.email} 
+                    onChange={handleInputChange} 
+                    required 
+                    placeholder="e.g., john@example.com"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>WhatsApp Phone Number</label>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    className="form-control" 
+                    value={formData.phone} 
+                    onChange={handleInputChange} 
+                    required 
+                    placeholder="e.g., +234 803 123 4567"
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="btn btn-secondary" 
+                  style={{ width: '100%', padding: '14px', marginTop: '10px' }}
+                  disabled={loading}
+                >
+                  {loading ? 'Opening Paystack...' : `Pay ₦${selectedPlan?.price.toLocaleString()} via Paystack`}
+                </button>
+              </form>
+            ) : (
+              /* Direct Bank Transfer Details */
+              <div>
+                <div style={{
+                  background: '#fcfff0',
+                  border: '1px solid #dbe6dc',
+                  borderRadius: '16px',
+                  padding: '18px 20px',
+                  marginBottom: '20px'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <span style={{ fontSize: '0.75rem', fontWeight: '800', color: '#c9952a', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      Official Bank Details
+                    </span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#0c3e26' }}>
+                      ₦{selectedPlan?.price.toLocaleString()}
+                    </span>
+                  </div>
+
+                  <div style={{ marginBottom: '10px' }}>
+                    <span style={{ fontSize: '0.8rem', color: '#6d7f76', display: 'block' }}>Bank Name</span>
+                    <strong style={{ fontSize: '0.95rem', color: '#0c3e26' }}>{bankDetails.bankName}</strong>
+                  </div>
+
+                  <div style={{ marginBottom: '10px' }}>
+                    <span style={{ fontSize: '0.8rem', color: '#6d7f76', display: 'block' }}>Account Name</span>
+                    <strong style={{ fontSize: '0.95rem', color: '#0c3e26' }}>{bankDetails.accountName}</strong>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff', padding: '10px 14px', borderRadius: '10px', border: '1px solid #e1e9df' }}>
+                    <div>
+                      <span style={{ fontSize: '0.75rem', color: '#6d7f76', display: 'block' }}>Account Number</span>
+                      <strong style={{ fontSize: '1.15rem', color: '#0c3e26', letterSpacing: '0.04em' }}>{bankDetails.accountNumber}</strong>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={copyAccountNumber}
+                      className="btn btn-outline"
+                      style={{ padding: '6px 12px', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '5px' }}
+                    >
+                      <FaCopy /> {copied ? 'Copied!' : 'Copy'}
+                    </button>
+                  </div>
+                </div>
+
+                <form onSubmit={handleTransferSubmit}>
+                  <div className="form-group">
+                    <label>Your Full Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      className="form-control" 
+                      value={formData.name} 
+                      onChange={handleInputChange} 
+                      required 
+                      placeholder="e.g., John Doe"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>WhatsApp Phone Number</label>
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      className="form-control" 
+                      value={formData.phone} 
+                      onChange={handleInputChange} 
+                      required 
+                      placeholder="e.g., +234 803 123 4567"
+                    />
+                  </div>
+
+                  <div style={{ background: '#f4fbf6', border: '1px solid #c8e6c9', borderRadius: '10px', padding: '12px', marginBottom: '16px', fontSize: '0.8rem', color: '#1b5e20', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                    <FaWhatsapp style={{ fontSize: '1.2rem', color: '#25D366', flexShrink: 0, marginTop: '2px' }} />
+                    <span>Please send your transfer proof/receipt to our WhatsApp number <strong>(+234 705 589 3239)</strong> for immediate verification and access.</span>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ width: '100%', padding: '14px' }}
+                  >
+                    <FaWhatsapp /> Send Transfer Proof via WhatsApp
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       )}
 
-      {/* Payment Success View */}
+      {/* Payment Success View (Paystack) */}
       {paymentSuccess && (
         <div style={{
           position: 'fixed',
@@ -368,7 +563,7 @@ export default function PremiumMembership() {
             </div>
             <h3 style={{ fontSize: '1.6rem', marginBottom: '8px', color: '#0c3e26' }}>Subscription Confirmed!</h3>
             <p style={{ color: '#4d5f57', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '30px' }}>
-              Your payment has been successfully processed. An onboarding link has been shared via WhatsApp.
+              Your payment has been successfully processed via Paystack. An onboarding link has been opened via WhatsApp.
             </p>
             <button 
               onClick={() => setPaymentSuccess(false)}
@@ -376,6 +571,57 @@ export default function PremiumMembership() {
               style={{ width: '100%' }}
             >
               Continue Browsing
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Transfer Submitted Confirmation View */}
+      {transferSubmitted && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(5px)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '24px',
+            padding: '40px',
+            maxWidth: '480px',
+            width: '100%',
+            textAlign: 'center',
+            boxShadow: 'var(--shadow-heavy)'
+          }}>
+            <div style={{
+              width: '80px',
+              height: '80px',
+              borderRadius: '50%',
+              background: '#e8f5e9',
+              color: '#2e7d32',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '2.5rem',
+              margin: '0 auto 24px'
+            }}>
+              <FaWhatsapp />
+            </div>
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '8px', color: '#0c3e26' }}>Transfer Initiated!</h3>
+            <p style={{ color: '#4d5f57', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '24px' }}>
+              Please share your payment receipt or transfer screenshot with Dr. Ayeni Blessing on WhatsApp (+234 705 589 3239) for immediate activation.
+            </p>
+            <button 
+              onClick={() => setTransferSubmitted(false)}
+              className="btn btn-primary"
+              style={{ width: '100%' }}
+            >
+              Back to Premium Hub
             </button>
           </div>
         </div>
