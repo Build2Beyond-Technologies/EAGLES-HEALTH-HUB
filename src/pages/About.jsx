@@ -22,8 +22,8 @@ export default function About({ setCurrentTab }) {
             <div style={{ position: 'relative', width: '100%', maxWidth: '420px', margin: '0 auto' }}>
               <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-heavy)', border: '1px solid #e1e9df', background: '#0c3e26' }}>
                 <img 
-                  src="/dr_ayani.jpeg" 
-                  alt="Dr. Ayeni Blessing O. (MBChB, MPH, MWACP)" 
+                  src="/dr_ayeni_founder.png"
+                  alt="Dr. Ayeni Blessing O. — MBCh.B., MWACP, MPH — Founder, Eagles Health Hub."
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} 
                 />
               </div>
@@ -84,7 +84,7 @@ export default function About({ setCurrentTab }) {
           }}>
             <video 
               controls 
-              poster="/dr_ayani.jpeg" 
+              poster="/dr_ayeni_founder.png"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             >
               <source 
