@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { pagePaths, pageFromPath } from './navigation';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
@@ -19,7 +20,21 @@ import Blog from './pages/Blog';
 import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('home');
+  const [currentTab, updateCurrentTab] = useState(() => pageFromPath(window.location.pathname));
+
+  const setCurrentTab = (page) => {
+    const path = pagePaths[page];
+    if (!path) return;
+    if (window.location.pathname !== path) window.history.pushState(null, '', path);
+    updateCurrentTab(page);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  useEffect(() => {
+    const handlePopState = () => updateCurrentTab(pageFromPath(window.location.pathname));
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Initialize LocalStorage lists if empty
   useEffect(() => {
@@ -53,7 +68,7 @@ export default function App() {
       case 'premium-membership':
         return <PremiumMembership />;
       case 'programs':
-        return <Programs />;
+        return <Programs setCurrentTab={setCurrentTab} />;
       case 'book-consultation':
         return <BookConsultation />;
       case 'speaking-engagements':
@@ -67,7 +82,13 @@ export default function App() {
       case 'admin':
         return <AdminDashboard />;
       default:
-        return <Home setCurrentTab={setCurrentTab} />;
+        return (
+          <section className="container" style={{ paddingTop: '160px', paddingBottom: '80px' }}>
+            <h1>Page not found</h1>
+            <p>The page you requested does not exist.</p>
+            <a href="/" className="btn btn-primary">Return Home</a>
+          </section>
+        );
     }
   };
 

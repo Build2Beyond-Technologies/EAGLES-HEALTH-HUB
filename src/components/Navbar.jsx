@@ -1,3 +1,4 @@
+import { pagePaths, followPageLink } from '../navigation';
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -32,8 +33,8 @@ export default function Navbar({ currentTab, setCurrentTab }) {
     <nav className="navbar">
       <div className="container navbar-container">
         <a 
-          href="#" 
-          onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} 
+          href="/"
+          onClick={(e) => followPageLink(e, handleNavClick, 'home')}
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
         >
           <img 
@@ -55,8 +56,9 @@ export default function Navbar({ currentTab, setCurrentTab }) {
                   <ul className="dropdown-menu">
                     {item.submenu.map((sub) => (
                       <li key={sub.id}>
-                        <span
-                          onClick={() => handleNavClick(sub.id)}
+                        <a
+                          href={pagePaths[sub.id]}
+                          onClick={(e) => followPageLink(e, handleNavClick, sub.id)}
                           className="dropdown-item"
                           style={{
                             color: currentTab === sub.id ? 'var(--leaf-green)' : '',
@@ -64,7 +66,7 @@ export default function Navbar({ currentTab, setCurrentTab }) {
                           }}
                         >
                           {sub.label}
-                        </span>
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -73,23 +75,25 @@ export default function Navbar({ currentTab, setCurrentTab }) {
             }
             return (
               <li key={item.id}>
-                <span
-                  onClick={() => handleNavClick(item.id)}
+                <a
+                  href={pagePaths[item.id]}
+                  onClick={(e) => followPageLink(e, handleNavClick, item.id)}
                   className={`nav-link ${currentTab === item.id ? 'active' : ''}`}
                 >
                   {item.label}
-                </span>
+                </a>
               </li>
             );
           })}
           <li>
-            <span
-              onClick={() => handleNavClick('book-consultation')}
+            <a
+              href={pagePaths['book-consultation']}
+              onClick={(e) => followPageLink(e, handleNavClick, 'book-consultation')}
               className="nav-cta-btn btn"
               style={{ cursor: 'pointer', padding: '10px 20px', borderRadius: '50px' }}
             >
               Book Consultation
-            </span>
+            </a>
           </li>
         </ul>
 

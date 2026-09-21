@@ -1,3 +1,4 @@
+import { pagePaths, followPageLink } from '../navigation';
 import React from 'react';
 import { FaWhatsapp, FaEnvelope, FaInstagram, FaFacebook, FaLinkedin } from 'react-icons/fa';
 
@@ -34,14 +35,15 @@ export default function Footer({ setCurrentTab }) {
             <ul style={{ listStyle: 'none' }}>
               {['home', 'about', 'lifestyle-medicine', 'free-community', 'premium-membership'].map((tab) => (
                 <li key={tab} style={{ marginBottom: '10px' }}>
-                  <span 
-                    onClick={() => handleNavClick(tab)}
-                    style={{ cursor: 'pointer', fontSize: '0.9rem', textTransform: 'capitalize', transition: 'color 0.2s' }}
+                  <a
+                    href={pagePaths[tab]}
+                    onClick={(e) => followPageLink(e, handleNavClick, tab)}
+                    style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'capitalize', transition: 'color 0.2s' }}
                     onMouseOver={(e) => e.target.style.color = '#c9952a'}
                     onMouseOut={(e) => e.target.style.color = 'rgba(255,255,255,0.7)'}
                   >
                     {tab.replace('-', ' ')}
-                  </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -52,14 +54,15 @@ export default function Footer({ setCurrentTab }) {
             <ul style={{ listStyle: 'none' }}>
               {['programs', 'book-consultation', 'speaking-engagements', 'medical-supplies', 'blog', 'contact-faq'].map((tab) => (
                 <li key={tab} style={{ marginBottom: '10px' }}>
-                  <span 
-                    onClick={() => handleNavClick(tab)}
-                    style={{ cursor: 'pointer', fontSize: '0.9rem', textTransform: 'capitalize', transition: 'color 0.2s' }}
+                  <a
+                    href={pagePaths[tab]}
+                    onClick={(e) => followPageLink(e, handleNavClick, tab)}
+                    style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer', fontSize: '0.9rem', textTransform: 'capitalize', transition: 'color 0.2s' }}
                     onMouseOver={(e) => e.target.style.color = '#c9952a'}
                     onMouseOut={(e) => e.target.style.color = 'rgba(255,255,255,0.7)'}
                   >
                     {tab.replace('-', ' ')}
-                  </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -115,7 +118,7 @@ export default function Footer({ setCurrentTab }) {
             </a>
           </p>
           <div style={{ display: 'flex', gap: '15px' }}>
-            <span onClick={() => handleNavClick('admin')} style={{ cursor: 'pointer', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = '#fff'} onMouseOut={(e) => e.target.style.color = 'rgba(255,255,255,0.4)'}>Admin Area</span>
+            <a href={pagePaths.admin} onClick={(e) => followPageLink(e, handleNavClick, 'admin')} style={{ cursor: 'pointer', color: 'rgba(255,255,255,0.4)', transition: 'color 0.2s' }} onMouseOver={(e) => e.target.style.color = '#fff'} onMouseOut={(e) => e.target.style.color = 'rgba(255,255,255,0.4)'}>Admin Area</a>
           </div>
         </div>
       </div>
