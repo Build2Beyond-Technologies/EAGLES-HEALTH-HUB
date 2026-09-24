@@ -16,10 +16,10 @@ export default function Home({ setCurrentTab }) {
           <div className="hero-grid">
             <div className="hero-content">
               <span className="section-tag" style={{ color: '#c9952a' }}>Eagles Health Hub</span>
-              <h1>
+              {/* <h1>
                 Your Health. 
                 <em>Our Priority.</em>
-              </h1>
+              </h1> */}
               <p className="hero-subtext">
                 A modern clinical community designed to help you construct healthier habits, control blood pressure, and reverse chronic conditions through evidence-based Lifestyle Medicine.
               </p>
